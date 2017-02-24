@@ -1,7 +1,6 @@
-/*封装的touchJS 使用方法 new Touch( el ).touch(callback).longTouch(callback).swipeLeft(callback).swipeRight(callback);
+/*封装的touchJS 使用方法 new Touch( el ).touch(callback).longTouch(callback).swipeLeft(callback).swipeRight(callback).dbTouch(callback);
  * touch  和longtouch 均返回 touchstart event事件
  */
-;
 (function () {
   var leftORTop = function (direction, self, callback) {
         var begin,
@@ -58,6 +57,32 @@
       });
 
       return this;
+    },
+    dbTouch: function (callback) {
+      var times = 0,
+          dbTimer = null,
+          self = this;
+
+      this.el.addEventListener('touchstart', function (e) {
+        times++;
+
+      });
+
+      this.el.addEventListener('touchend', function (e) {
+
+        dbtimer = setTimeout(function () {
+
+          if (times === 2) {
+            times = 0;
+            callback.call(self.el, e);
+          } else {
+            times = 0;
+            clearTimeout(dbtimer)
+          }
+
+        }, 200);
+
+      });
     },
     longTouch: function (callback) {
       var self = this,

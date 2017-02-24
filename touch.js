@@ -1,5 +1,4 @@
-/*
- * new Touch( el ).touch(callback).longTouch(callback).swipeLeft(callback).swipeRight(callback).swipeTop.swipeDown;
+/*封装的touchJS 使用方法 new Touch( el ).touch(callback).longTouch(callback).swipeLeft(callback).swipeRight(callback);
  * touch  和longtouch 均返回 touchstart event事件
  */
 (function () {
@@ -21,6 +20,9 @@
 
       },
       rightORDown = function (direction,self,callback) {
+        var begin,
+            end;
+
         self.el.addEventListener('touchstart', function (e) {
           begin = e.changedTouches[0][direction];
         });
@@ -51,6 +53,7 @@
 
         if (typeof callback === 'function')
           callback.call(self.el, e);
+
       });
 
       return this;
@@ -62,45 +65,40 @@
       this.el.addEventListener('touchstart', function (e) {
 
         isLongTouch = setTimeout(function () {
+
           if (typeof callback === 'function')
-            callback.call(self.el, e)
+            callback.call(self.el, e);
+
         }, 600)
       });
 
       this.el.addEventListener('touchend', function (e) {
-
-        clearTimeout(isLongTouch)
+        clearTimeout(isLongTouch);
       });
-
       return this;
     },
     swipeRight: function (callback) {
       var self = this;
 
       rightORDown('pageX',self,callback);
-
       return this;
-
     },
     swipeLeft: function (callback) {
       var self = this;
 
       leftORTop('pageX', self, callback);
-
       return this;
     },
     swipeTop: function (callback) {
       var self = this;
 
-      leftORTop('pageY',self,callback)
-
+      leftORTop('pageY',self,callback);
       return this;
     },
     swipeDown: function (callback) {
       var self = this;
 
       rightORDown('pageY',self,callback);
-
       return this;
     }
   };

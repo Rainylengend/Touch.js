@@ -1,6 +1,7 @@
 /*封装的touchJS 使用方法 new Touch( el ).touch(callback).longTouch(callback).swipeLeft(callback).swipeRight(callback).dbTouch(callback);
  * touch  和longtouch 均返回 touchstart event事件
  */
+;
 (function () {
   var leftORTop = function (direction, self, callback) {
         var begin,

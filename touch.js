@@ -20,7 +20,7 @@
         });
 
       },
-      rightORDown = function (direction,self,callback) {
+      rightORDown = function (direction, self, callback) {
         var begin,
             end;
 
@@ -81,7 +81,7 @@
     swipeRight: function (callback) {
       var self = this;
 
-      rightORDown('pageX',self,callback);
+      rightORDown('pageX', self, callback);
       return this;
     },
     swipeLeft: function (callback) {
@@ -93,13 +93,13 @@
     swipeTop: function (callback) {
       var self = this;
 
-      leftORTop('pageY',self,callback);
+      leftORTop('pageY', self, callback);
       return this;
     },
     swipeDown: function (callback) {
       var self = this;
 
-      rightORDown('pageY',self,callback);
+      rightORDown('pageY', self, callback);
       return this;
     }
   };

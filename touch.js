@@ -14,7 +14,7 @@
         self.el.addEventListener('touchend', function (e) {
           end = e.changedTouches[0][direction];
 
-          if (end - begin < 0 && typeof callback === 'function')
+          if (end - begin < 50 && typeof callback === 'function')
             callback.call(self.el);
 
         });
@@ -31,7 +31,7 @@
         self.el.addEventListener('touchend', function (e) {
           end = e.changedTouches[0][direction];
 
-          if (end - begin > 0 && typeof callback === 'function')
+          if (end - begin > 50 && typeof callback === 'function')
             callback.call(self.el);
 
         });
@@ -71,14 +71,14 @@
 
       this.el.addEventListener('touchend', function (e) {
 
-        dbtimer = setTimeout(function () {
+	      dbTimer = setTimeout(function () {
 
           if (times === 2) {
             times = 0;
             callback.call(self.el, e);
           } else {
             times = 0;
-            clearTimeout(dbtimer)
+            clearTimeout(dbTimer)
           }
 
         }, 200);
